@@ -7,7 +7,13 @@ Uses CodeMirror.
 
 In the frontend, Snippets can be shown in plain text, with CodeMirror or with [WP-Syntax](http://wordpress.org/plugins/wp-syntax).
 
+Based in this WordPress Answer: [Create custom [sourcecode] shortcode, the right way?](http://wordpress.stackexchange.com/q/116044/12615)
+
 ## FAQ
+
+### More than one CodeMirror shortcode 
+This is not working. Only one CM shortcode can be at each page/post.  
+Use WP-Syntax instead.
 
 ### Hooks
 ```php
