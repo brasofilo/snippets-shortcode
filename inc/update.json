@@ -1,0 +1,16 @@
+{
+    "name" : "Snippets Shortcode",
+    "slug" : "snippets-shortcode-master",
+    "download_url" : "https://github.com/brasofilo/snippets-shortcode/archive/master.zip",
+    "version" : "2013.10.08",
+    "author" : "Rodolfo Buaiz",
+    "author_homepage" : "http://brasofilo.com",
+    "homepage" : "https://github.com/brasofilo/snippets-shortcode",
+    "tested" : "3.6",
+    "sections" : {
+        "description" : "Get all Questions or Answers from a given user in a given Stack site.",
+        "changelog" : "<p><ul><li><strong>2013.10.08</strong><p>Initial Public Release.</p></li></ul>"
+    },
+    "upgrade_notice" : "Version 2013.10.08 Plugin launch.",
+    "last_updated" : "2013.10.08"
+}

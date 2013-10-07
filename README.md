@@ -5,6 +5,8 @@ Custom post type to hold Code Snippets.
 A Shortcode is provided to show code blocks in the frontend. 
 Uses CodeMirror.
 
+In the frontend, Snippets can be shown in plain text, with CodeMirror or with [WP-Syntax](http://wordpress.org/plugins/wp-syntax).
+
 ## FAQ
 
 ### Hooks
@@ -39,8 +41,14 @@ Add to your style.css:
 
 ##Screenshots
 
-**SCREENSHOT**:  
-> ![Plugin meta box](https://raw.github.com/brasofilo/snippets-shortcode/master/assets/screenshot.png)
+**Snippets post type with CodeMirror enabled**:  
+> ![](https://raw.github.com/brasofilo/snippets-shortcode/master/img/screenshot-1.png)
+
+**Meta boxes to create shortcodes**:  
+> ![](https://raw.github.com/brasofilo/snippets-shortcode/master/img/screenshot-2.png)
+
+**Frontend example**:  
+> ![](https://raw.github.com/brasofilo/snippets-shortcode/master/img/screenshot-3.png)
 
 
 ##Acknowledgments
