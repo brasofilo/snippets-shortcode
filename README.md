@@ -42,13 +42,13 @@ Add to your style.css:
 ##Screenshots
 
 **Snippets post type with CodeMirror enabled**:  
-> ![](https://raw.github.com/brasofilo/snippets-shortcode/master/img/screenshot-1.png)
+> ![](img/screenshot-1.png)
 
 **Meta boxes to create shortcodes**:  
-> ![](https://raw.github.com/brasofilo/snippets-shortcode/master/img/screenshot-2.png)
+> ![](img/screenshot-2.png)
 
 **Frontend example**:  
-> ![](https://raw.github.com/brasofilo/snippets-shortcode/master/img/screenshot-3.png)
+> ![](img/screenshot-3.png)
 
 
 ##Acknowledgments
