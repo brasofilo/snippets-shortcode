@@ -129,7 +129,7 @@ class B5F_Snippets_Shortcode
         
 		include_once 'inc/plugin-updates/plugin-update-checker.php';
 		$updateChecker = new PluginUpdateChecker(
-			'https://raw.github.com/brasofilo/snippets-shortcode/master/includes/update.json',
+			'https://raw.github.com/brasofilo/snippets-shortcode/master/inc/update.json',
 			__FILE__,
 			'snippets-shortcode-master'
 		);
