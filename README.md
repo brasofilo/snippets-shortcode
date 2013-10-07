@@ -8,29 +8,22 @@ Uses CodeMirror.
 ## FAQ
 
 ### Hooks
-```
-add_filter('ss_codemirror_languages', function( $modes )
-{
+```php
+# Add or remove languages
+add_filter('ss_codemirror_languages', function( $modes ) {
     $remove = array( 'markdown' );
     return array_diff( $modes, $remove );
 });
 
-add_filter('ss_codemirror_themes', function($themes)
-{
+# Add or remove themes
+add_filter('ss_codemirror_themes', function( $themes ) {
     $remove = array( '3024-night', 'ambiance-mobile', 'ambiance', 'base16-dark', 'base16-light', 'blackboard', 'cobalt', 'eclipse', 'elegant', 'erlang-dark' );
     return array_diff( $themes, $remove );
 });
 
-
-add_filter('ss_gprettify_skins', function( $skins )
-{
-    $remove = array( 'sons-of-obsidian' );
-    return array_diff( $skins, $remove );
-});
-
-add_filter('ss_show_shortcodes_in_cpts', function( $cpts )
-{
-    $cpts[] = 'attachment';
+# Add or remove Post Types where the SnippetsShortcode meta box will display
+add_filter('ss_show_shortcodes_in_cpts', function( $cpts ) {
+    $cpts[] = 'my_cpt';
     return $cpts;
 });
 ```
@@ -38,7 +31,7 @@ add_filter('ss_show_shortcodes_in_cpts', function( $cpts )
 ### Height of the code box in the frontend
 Add to your style.css:
 
-```
+```css
 .CodeMirror {
     height: auto !important /* or fixed pixels */
 }
@@ -46,7 +39,7 @@ Add to your style.css:
 
 ##Screenshots
 
-**TEMPORATY SCREENSHOT**:  
+**SCREENSHOT**:  
 > ![Plugin meta box](https://raw.github.com/brasofilo/snippets-shortcode/master/assets/screenshot.png)
 
 
