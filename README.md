@@ -5,7 +5,7 @@ Custom post type to hold Code Snippets.
 A Shortcode is provided to show code blocks in the frontend. 
 Uses CodeMirror.
 
-In the frontend, Snippets can be shown in plain text, with CodeMirror or with [WP-Syntax](http://wordpress.org/plugins/wp-syntax).
+In the frontend, Snippets can be shown in plain text, with [CodeMirror](http://codemirror.net/) or with [WP-Syntax](http://wordpress.org/plugins/wp-syntax).
 
 Based in this WordPress Answer: [Create custom [sourcecode] shortcode, the right way?](http://wordpress.stackexchange.com/q/116044/12615)
 
