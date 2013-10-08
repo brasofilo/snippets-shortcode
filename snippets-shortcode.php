@@ -3,7 +3,7 @@
  * Plugin Name: Snippets Shortcode
  * Plugin URI: https://github.com/brasofilo/snippets-shortcode
  * Description: Add code snippets as a Custom Post Type. Display in regular posts and pages using a Shortcode. Uses CodeMirror on backend and CM/WP-Syntax in frontend. 
- * Version: 2013.10.08
+ * Version: 2013.10.09
  * Author: Rodolfo Buaiz
  * Author URI: http://brasofilo.com
  * License: GPLv2 or later
@@ -135,6 +135,8 @@ class B5F_Snippets_Shortcode
 		);
 		
 		add_filter( 'upgrader_source_selection', array( $this, 'rename_github_zip' ), 1, 3);
+        
+        add_filter( 'plugin_row_meta', array( $this, 'donate_link' ), 10, 4 );
 	}
 
     
@@ -485,6 +487,23 @@ label[for=post_status] {
         );
         return $meta_data[$type];
     }
+    
+    /**
+     * Add donate link to plugin description in /wp-admin/plugins.php
+     * 
+     * @param array $plugin_meta
+     * @param string $plugin_file
+     * @param string $plugin_data
+     * @param string $status
+     * @return array
+     */
+    public function donate_link( $plugin_meta, $plugin_file, $plugin_data, $status ) 
+	{
+		if( plugin_basename( __FILE__ ) == $plugin_file )
+			$plugin_meta[] = '&hearts; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=JNJXKWBYM9JP6&lc=ES&item_name=Snippets%20Shortcode%20%3a%20Rodolfo%20Buaiz&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted">Buy me a beer :o)</a>';
+		return $plugin_meta;
+	}
+
 } 
 
 
