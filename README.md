@@ -16,21 +16,31 @@ This is not working. Only one CM shortcode can be at each page/post.
 Use WP-Syntax instead.
 
 ### Hooks
+Tip: use as a [Must Use plugin](http://codex.wordpress.org/Must_Use_Plugins). 
+
 ```php
+# Show in menu
+# - false (hide)
+# - true (show as top level)
+# - some string (submenu of a top level page such as 'tools.php' or 'edit.php?post_type=page')
+add_filter( 'ss_show_in_menu', function( $menu ) {
+    return 'index.php';
+});
+
 # Add or remove languages
-add_filter('ss_codemirror_languages', function( $modes ) {
+add_filter( 'ss_codemirror_languages', function( $modes ) {
     $remove = array( 'markdown' );
     return array_diff( $modes, $remove );
 });
 
 # Add or remove themes
-add_filter('ss_codemirror_themes', function( $themes ) {
+add_filter( 'ss_codemirror_themes', function( $themes ) {
     $remove = array( '3024-night', 'ambiance-mobile', 'ambiance', 'base16-dark', 'base16-light', 'blackboard', 'cobalt', 'eclipse', 'elegant', 'erlang-dark' );
     return array_diff( $themes, $remove );
 });
 
 # Add or remove Post Types where the SnippetsShortcode meta box will display
-add_filter('ss_show_shortcodes_in_cpts', function( $cpts ) {
+add_filter( 'ss_show_shortcodes_in_cpts', function( $cpts ) {
     $cpts[] = 'my_cpt';
     return $cpts;
 });
@@ -65,7 +75,10 @@ Add to your style.css:
 
 ##Changelog
 
-### 1.0
+### 2013.10.09
+* Added filter to position 
+
+### 2013.10.08
 * Initial Public Release
 
 ##Credits

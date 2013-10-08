@@ -53,7 +53,7 @@ class B5F_SS_Cpt
 		    'public'             => false,
 		    'publicly_queryable' => false,
 		    'show_ui'            => true,
-		    'show_in_menu'       => 'edit.php',
+		    'show_in_menu'       => apply_filters( 'ss_show_in_menu', 'edit.php' ),
 		    'query_var'          => true,
 		    'rewrite'            => false,
 		    'capability_type'    => 'post',
