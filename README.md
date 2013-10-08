@@ -11,6 +11,9 @@ Based in this WordPress Answer: [Create custom [sourcecode] shortcode, the right
 
 ## FAQ
 
+### Use with [WP-Syntax](http://wordpress.org/plugins/wp-syntax)
+Install the plugin, and a shortcode will be available to render compatible content.
+
 ### More than one CodeMirror shortcode 
 This is not working. Only one CM shortcode can be at each page/post.  
 Use WP-Syntax instead.
@@ -75,7 +78,7 @@ Add to your style.css:
 
 ##Changelog
 
-### 2013.10.09
+### 2013.10.08.2
 * Added filter to position 
 
 ### 2013.10.08
