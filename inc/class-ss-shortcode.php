@@ -21,6 +21,7 @@ class B5F_SS_Shortcode
         add_action( 'wp_head', array( B5F_Snippets_Shortcode::get_instance(), 'mini_css' ) );
 	}
 	
+    
    /**
      * Shortcode to use with CodeMirror
      * 
@@ -82,10 +83,10 @@ width: 40px !important;
 		global $post;
 		$snippet_info = get_post( $atts['id'] );
 		$code = get_post_meta( $atts['id'], '_snippet_code', true );
-
+        $title = isset( $atts['show_title'] ) ? "<h3>{$snippet_info->post_title}</h3>" : '';
 		$response = sprintf(
-			'<h3>%s</h3><pre lang="%s" %s %s escaped="true">%s</pre>',
-			$snippet_info->post_title,
+			'%s<pre lang="%s" %s %s escaped="true">%s</pre>',
+			$title,
             $atts['lang'],
             isset( $atts['line'] ) ? 'line="'.$atts['line'].'"' : '',
             isset( $atts['highlight'] ) ? 'highlight="'.$atts['highlight'].'"' : '',
@@ -93,60 +94,6 @@ width: 40px !important;
 		);
         return apply_filters ('the_content', $response );
 	}
-    
-    
-    /** 
-     * NOT USED
-     */
-	public function _shortcode_google( $atts, $content )
-	{
-        /*
-        public $translate_languages_to_google = array( 
-            'php' => 'php', 
-            'css' => 'css', 
-            'htmlmixed' => 'html', 
-            'javascript' => 'js',
-            'xml' => 'xml', 
-            'markdown' => 'html', 
-            'sql' => 'sql'
-        );
-
-        $sel_lang = $this->translate_languages_to_google[ $lang ];
-        $skin = isset( $atts['skin'] ) ? $atts['skin'] : 'default'; 
-		
-		$file = 'run_prettify.js?lang='.$sel_lang.'&skin='. $skin;
-        wp_enqueue_script( 
-            'prettify-js', 
-            'https://google-code-prettify.googlecode.com/svn/loader/' . $file, 
-            array() 
-		);
-
-		return sprintf(
-			'<h3>%s</h3><pre class="prettyprint linenums">%s</pre>',
-			$snippet_info->post_title,
-			htmlentities( $code, ENT_QUOTES )
-		);*/
-		global $post;
-		$code = get_post_meta( $atts['id'], '_snippet_code', true );
-		$lang = get_post_meta( $atts['id'], '_select_language', true );
-        $sel_lang = $this->cm_languages[ $lang ];
-		$snippet_info = get_post( $atts['id'] );
-        $skin = isset( $atts['skin'] ) ? $atts['skin'] : 'default'; 
-		
-		$file = 'run_prettify.js?lang='.$sel_lang.'&skin='. $skin;
-        wp_enqueue_script( 
-            'prettify-js', 
-            'https://google-code-prettify.googlecode.com/svn/loader/' . $file, 
-            array() 
-		);
-
-		return sprintf(
-			'<h3>%s</h3><pre class="prettyprint linenums">%s</pre>',
-			$snippet_info->post_title,
-			htmlentities( $code, ENT_QUOTES )
-		);
-	}
-    
 
 }
 

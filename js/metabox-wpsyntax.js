@@ -4,7 +4,7 @@
 jQuery(document).ready(function( $ )
 {
     var wps_cpt_dropdown = $('#select-wps-shortcode');
-    var wps_lang = $('#input-wps_lang');
+    var wps_lang = $('#select-wps_lang');
     var wps_line = $('#input-wps_line');
     var wps_hlight = $('#input-wps_hlight');
     var wps_render_input = $('#render-wps-shortcode');

@@ -3,7 +3,7 @@
  * Plugin Name: Snippets Shortcode
  * Plugin URI: https://github.com/brasofilo/snippets-shortcode
  * Description: Add code snippets as a Custom Post Type. Display in regular posts and pages using a Shortcode. Uses CodeMirror on backend and CM/WP-Syntax in frontend. 
- * Version: 2013.10.08.2
+ * Version: 2013.10.09
  * Author: Rodolfo Buaiz
  * Author URI: http://brasofilo.com
  * License: GPLv2 or later
@@ -487,6 +487,7 @@ label[for=post_status] {
         );
         return $meta_data[$type];
     }
+
     
     /**
      * Add donate link to plugin description in /wp-admin/plugins.php

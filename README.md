@@ -30,7 +30,13 @@ add_filter( 'ss_show_in_menu', function( $menu ) {
     return 'index.php';
 });
 
-# Add or remove languages
+# Add or remove WP-Syntax languages
+add_filter( 'ss_wpsyntax_languages', function( $modes ) {
+    $remove = array( 'ruby', 'rails' );
+    return array_diff( $modes, $remove );
+});
+
+# Add or remove CodeMirror languages
 add_filter( 'ss_codemirror_languages', function( $modes ) {
     $remove = array( 'markdown' );
     return array_diff( $modes, $remove );
@@ -77,6 +83,10 @@ Add to your style.css:
 
 
 ##Changelog
+
+### 2013.10.09
+* Hide title by default in WPSyntax
+* Dropdown selection for WPSyntax languages
 
 ### 2013.10.08.2
 * Added filter to position 

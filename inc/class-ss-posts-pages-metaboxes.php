@@ -110,9 +110,9 @@ class B5F_SS_Posts_Pages_Metaboxes
         echo '<h3>Configuration:</h3>';
 
         # Disable CodeMirror
-        $this->print_inputbox( 'Language', $saved_meta, 'wps_lang' );
+        $this->print_wps_languages( 'Language', $saved_meta, 'wps_lang' );
         # Disable CodeMirror
-        $this->print_inputbox( 'Line number start', $saved_meta, 'wps_line' );
+        $this->print_inputbox( 'Line number start <small>leave empty for no line #\'s</small>', $saved_meta, 'wps_line' );
         # Disable CodeMirror
         $this->print_inputbox( 'Line number hightlight', $saved_meta, 'wps_hlight' );
 
@@ -128,6 +128,14 @@ class B5F_SS_Posts_Pages_Metaboxes
         echo '<br /><input type="text" class="widefat" id="render-wps-shortcode" value="" />';
 	}
     
+    
+    /**
+     * Prints text input field
+     * 
+     * @param string $label
+     * @param array  $saved
+     * @param string $key
+     */
     private function print_inputbox( $label, $saved, $key )
     {
         echo "<p><label>$label ";
@@ -137,8 +145,16 @@ class B5F_SS_Posts_Pages_Metaboxes
             isset( $saved[$key] ) ? esc_attr( $saved[$key] ) : ''
         );
         echo '</label></p>';
-        
     }
+    
+    
+    /**
+     * Prints checkbox input field
+     * 
+     * @param string $label
+     * @param array  $saved
+     * @param string $key
+     */
     private function print_checkbox( $label, $saved, $key )
     {
         echo "<p><label>$label ";
@@ -149,5 +165,31 @@ class B5F_SS_Posts_Pages_Metaboxes
         );
         echo '</label></p>';
         
+    }
+    
+    
+    /**
+     * Prints dropdown select field
+     * 
+     * @param string $label
+     * @param array  $saved
+     * @param string $key
+     */
+   private function print_wps_languages( $label, $saved, $key )
+    {
+        $langs = apply_filters( 'ss_wpsyntax_languages', array( 'css', 'html4strict', 'javascript', 'mysql', 'php', 'rails', 'ruby', 'text', 'xml' ) );
+        
+        echo "<p><label>$label ";
+        echo '<select name="_snippet_shortcode['.$key.']" id="select-'.$key.'">
+        <option value="">- Select -</option>';
+        foreach( $langs as $m ) 
+        {
+            printf( 
+                '<option %s>%s</option>',
+                selected( $m, $saved[$key], false),
+                $m
+            );
+        }
+        echo '</select></label></p>';        
     }
 }
