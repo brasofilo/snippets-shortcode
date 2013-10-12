@@ -12,6 +12,8 @@ jQuery(document).ready(function( $ )
     {
         var short_id = cpt_dropdown.val();
         var short_id_str = ( short_id != '' ) ? ' id="'+short_id+'"' : '';
+        if( short_id != '' )
+            $('#render-cm-edit-link').html('<a href="/wp-admin/post.php?post='+short_id+'&action=edit" title="opens in new window" target="_blank">edit #'+short_id+'</a>');
 
         var short_sk = skin_dropdown.val();
         var short_sk_str = ( short_sk != '' && short_sk != 'default' ) ? ' skin="'+short_sk+'"' : '';

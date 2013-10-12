@@ -12,6 +12,8 @@ jQuery(document).ready(function( $ )
     {
         var short_wps_id = wps_cpt_dropdown.val();
         var short_wps_id_str = ( short_wps_id != '' ) ? ' id="'+short_wps_id+'"' : '';
+        if( short_wps_id != '' )
+            $('#render-wps-edit-link').html('<a href="/wp-admin/post.php?post='+short_wps_id+'&action=edit" title="opens in new window" target="_blank">edit #'+short_wps_id+'</a>');
 
         var short_lang = wps_lang.val();
         var short_lang_str = ( short_lang != '' ) ? ' lang="'+short_lang+'"' : '';

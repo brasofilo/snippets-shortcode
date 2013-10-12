@@ -84,6 +84,9 @@ Add to your style.css:
 
 ##Changelog
 
+### 2013.10.12
+* Quick link to edit snippets.
+
 ### 2013.10.09
 * Hide title by default in WPSyntax
 * Dropdown selection for WPSyntax languages

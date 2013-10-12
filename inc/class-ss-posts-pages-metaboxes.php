@@ -84,7 +84,7 @@ class B5F_SS_Posts_Pages_Metaboxes
 
         # Snippets pages dropdown
         // LAME CSS FIX !!!!!
-		echo "<style>#_snippet_shortcode{width:100%} .js .postbox h3{cursor:default} input[type='checkbox'] { margin-left:10px }</style>"; 
+		echo "<style>#_snippet_shortcode,#select-shortcode{width:100%} .js .postbox h3{cursor:default} input[type='checkbox'] { margin-left:10px }</style>"; 
         echo '<h3>Select snippet & create shortcode</h3>';
 		wp_dropdown_pages( array(
 			'post_type'=>'snippet',
@@ -94,6 +94,7 @@ class B5F_SS_Posts_Pages_Metaboxes
 			'show_option_none' => '- Select -'
 		) );
 		echo '<br /><input type="text" class="widefat" id="render-shortcode" value="" />';
+        echo '<br /><div id="render-cm-edit-link"></div>';
 	}
     
     /**
@@ -117,6 +118,8 @@ class B5F_SS_Posts_Pages_Metaboxes
         $this->print_inputbox( 'Line number hightlight', $saved_meta, 'wps_hlight' );
 
         # Snippets pages dropdown
+        // LAME CSS FIX !!!!!
+		echo "<style>#select-wps-shortcode{width:100%}</style>"; 
         echo '<h3>Select snippet & create shortcode</h3>';
 		wp_dropdown_pages( array(
 			'post_type'=>'snippet',
@@ -126,6 +129,7 @@ class B5F_SS_Posts_Pages_Metaboxes
 			'show_option_none' => '- Select -'
 		) );
         echo '<br /><input type="text" class="widefat" id="render-wps-shortcode" value="" />';
+        echo '<br /><div id="render-wps-edit-link"></div>';
 	}
     
     
