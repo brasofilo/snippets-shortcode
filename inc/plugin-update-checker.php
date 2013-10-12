@@ -1,6 +1,13 @@
 <?php
 /**
- * Plugin Update Checker Library 1.3.1
+ * Modified by brasofilo
+ * - removed the method initDebugBarPanel and its associated calls
+ * - removed $this->debugMode declaration in the constructor
+ * - renamed main classes adding the suffix 'b' and 'B'
+ */
+
+/**
+ * Plugin Update Checker Library 1.3.1b
  * http://w-shadow.com/
  * 
  * Copyright 2013 Janis Elsts
@@ -8,7 +15,7 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-if ( !class_exists('PluginUpdateChecker_1_3_1') ):
+if ( !class_exists('PluginUpdateChecker_1_3_1b') ):
 
 /**
  * A custom plugin update checker. 
@@ -18,7 +25,7 @@ if ( !class_exists('PluginUpdateChecker_1_3_1') ):
  * @version 1.3.1
  * @access public
  */
-class PluginUpdateChecker_1_3_1 {
+class PluginUpdateChecker_1_3_1b {
 	public $metadataUrl = ''; //The URL of the plugin's metadata file.
 	public $pluginFile = '';  //Plugin filename relative to the plugins directory.
 	public $slug = '';        //Plugin slug.
@@ -46,7 +53,6 @@ class PluginUpdateChecker_1_3_1 {
 		$this->checkPeriod = $checkPeriod;
 		$this->slug = $slug;
 		$this->optionName = $optionName;
-		$this->debugMode = defined('WP_DEBUG') && WP_DEBUG;
 		
 		//If no slug is specified, use the name of the main plugin file as the slug.
 		//For example, 'my-cool-plugin/cool-plugin.php' becomes 'cool-plugin'.
@@ -109,17 +115,15 @@ class PluginUpdateChecker_1_3_1 {
 			//In case Cron is disabled or unreliable, we also manually trigger 
 			//the periodic checks while the user is browsing the Dashboard. 
 			add_action( 'admin_init', array($this, 'maybeCheckForUpdates') );
+
+			//Like WordPress itself, we check more often on certain pages.
+			add_action( 'load-update-core.php', array($this, 'maybeCheckForUpdates') );
 			
 		} else {
 			//Periodic checks are disabled.
 			wp_clear_scheduled_hook($this->cronHook);
 		}
 
-		if ( did_action('plugins_loaded') ) {
-			$this->initDebugBarPanel();
-		} else {
-			add_action('plugins_loaded', array($this, 'initDebugBarPanel'));
-		}
 	}
 	
 	/**
@@ -293,7 +297,8 @@ class PluginUpdateChecker_1_3_1 {
 	}
 	
 	/**
-	 * Check for updates only if the configured check interval has already elapsed.
+	 * Check for updates if the configured check interval has already elapsed.
+	 * Will use a shorter check interval on certain admin pages like "Dashboard -> Updates".
 	 * 
 	 * @return void
 	 */
@@ -303,10 +308,17 @@ class PluginUpdateChecker_1_3_1 {
 		}
 		$state = $this->getUpdateState();
 
+		//Check more often when the user visits Dashboard -> Updates.
+		if ( current_filter() == 'load-update-core.php' ) {
+			$timeout = 60;
+		} else {
+			$timeout = $this->checkPeriod * 3600;
+		}
+
 		$shouldCheck =
 			empty($state) ||
 			!isset($state->lastCheck) ||
-			( (time() - $state->lastCheck) >= $this->checkPeriod*3600 );
+			( (time() - $state->lastCheck) >= $timeout );
 
 		if ( $shouldCheck ){
 			$this->checkForUpdates();
@@ -580,15 +592,6 @@ class PluginUpdateChecker_1_3_1 {
 		add_filter('puc_' . $tag . '-' . $this->slug, $callback, $priority, $acceptedArgs);
 	}
 
-	/**
-	 * Initialize the update checker Debug Bar plugin/add-on thingy.
-	 */
-	public function initDebugBarPanel() {
-		if ( class_exists('Debug_Bar') ) {
-			require_once dirname(__FILE__) . '/debug-bar-plugin.php';
-			$this->debugBarPlugin = new PucDebugBarPlugin($this);
-		}
-	}
 }
 
 endif;
@@ -906,7 +909,7 @@ class PucFactory {
 endif;
 
 //Register classes defined in this file with the factory.
-PucFactory::addVersion('PluginUpdateChecker', 'PluginUpdateChecker_1_3_1', '1.3.1');
+PucFactory::addVersion('PluginUpdateCheckerB', 'PluginUpdateChecker_1_3_1b', '1.3.1');
 PucFactory::addVersion('PluginUpdate', 'PluginUpdate_1_3', '1.3');
 PucFactory::addVersion('PluginInfo', 'PluginInfo_1_3', '1.3');
 
@@ -914,8 +917,8 @@ PucFactory::addVersion('PluginInfo', 'PluginInfo_1_3', '1.3');
  * Create non-versioned variants of the update checker classes. This allows for backwards
  * compatibility with versions that did not use a factory, and it simplifies doc-comments.
  */
-if ( !class_exists('PluginUpdateChecker') ) {
-	class PluginUpdateChecker extends PluginUpdateChecker_1_3_1 { }
+if ( !class_exists('PluginUpdateCheckerB') ) {
+	class PluginUpdateCheckerB extends PluginUpdateChecker_1_3_1b { }
 }
 
 if ( !class_exists('PluginUpdate') ) {

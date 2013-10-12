@@ -127,8 +127,8 @@ class B5F_Snippets_Shortcode
         
 		add_action( 'save_post', array( $this, '_save_post' ), 10, 2 );
         
-		include_once 'inc/plugin-updates/plugin-update-checker.php';
-		$updateChecker = new PluginUpdateChecker(
+		include_once 'inc/plugin-update-checker.php';
+		new PluginUpdateCheckerB(
 			'https://raw.github.com/brasofilo/snippets-shortcode/master/inc/update.json',
 			__FILE__,
 			'snippets-shortcode-master'
